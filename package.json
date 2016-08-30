@@ -1,0 +1,16 @@
+{
+  "name": "patientsummary",
+  "version": "0.1.0",
+  "description": "patient summary uses uxcomponents for Chen CDN",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "gulp": "^3.9.1",
+    "gulp-exec": "^2.1.2",
+    "opn": "^4.0.2"
+  }
+}
