@@ -1,0 +1,31 @@
+{
+  "name": "carepro",
+  "version": "0.1.0",
+  "description": "carepro uses uxcomponents from Chen CDN",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "child_process": "^1.0.2",
+    "git-rev-sync": "^1.8.0",
+    "guid": "0.0.12",
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-clean": "^0.3.2",
+    "gulp-concat": "^2.6.1",
+    "gulp-fail": "^1.0.5",
+    "gulp-html-replace": "^1.6.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if-else": "^1.0.3",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "opn": "^4.0.2",
+    "optimist": "^0.6.1",
+    "require-dir": "^0.3.1",
+    "run-sequence": "^1.2.2",
+    "streamqueue": "^1.1.1"
+  }
+}

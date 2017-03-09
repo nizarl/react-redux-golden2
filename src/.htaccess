@@ -1,0 +1,10 @@
+RewriteEngine on
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule . index.html [L]
+RewriteRule .* - [env=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
+<IfModule mod_deflate.c>
+    <filesMatch "\.(js|css|html)$">
+        SetOutputFilter DEFLATE
+    </filesMatch>
+</IfModule>
