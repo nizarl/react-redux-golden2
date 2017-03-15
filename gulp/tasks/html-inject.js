@@ -56,7 +56,7 @@ function getEnvUrls() {
       urlTheme = conf.urlsTheme.legacy;
       break;
     default:
-      urlTheme = "legacy";
+       urlTheme = conf.urlsTheme.legacy; 
   }
 
   return {

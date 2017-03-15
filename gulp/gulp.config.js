@@ -1,7 +1,7 @@
 var git = require('git-rev-sync');
 var argv = require('optimist').argv;
 var env = argv.env;
-var theme = argv.theme;
+var theme = argv.theme || "legacy";
 var componentVersion = argv.componentVersion;
 var environments = {
   dev: 'http://localhost:3000/',
