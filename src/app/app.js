@@ -1,24 +1,31 @@
 "use strict";
 (function () {
     // Register Angular module
-    var carePro = angular.module('carepro', ['chenExternalUIComponents', 'ngComponentRouter']);
+    var carePro = angular.module('carepro', ['chenExternalUIComponents']);
 
-    carePro.config([
-        '$sceDelegateProvider', '$routeProvider', '$locationProvider', '$httpProvider', function ($sceDelegateProvider, $routeProvider, $locationProvider, $httpProvider) {
-            $sceDelegateProvider.resourceUrlWhitelist([
-                // Allow same origin resource loads.
-                'self',
+    carePro.config(function($stateProvider, $locationProvider, $sceDelegateProvider){
+        $locationProvider.html5Mode(true);
 
-                //Note: There is a difference between * and **. Docs: https://docs.angularjs.org/api/ng/provider/$sceDelegateProvider
-                'http://localhost:3000/**',
-                'https://localhost:3000/**',
-                'https://ux-components-int.chenmed.local/**',
-                'https://ux-components-qa.chenmed.local/**',
-                'https://ux-components.chenmed.com/**'
-            ]);
+        $sceDelegateProvider.resourceUrlWhitelist([
+            // Allow same origin resource loads.
+            'self',
 
-            carePro.value("$routerRootComponent", "careproComponent") 
-            $locationProvider.html5Mode(true);
-        }
-    ])
+            //Note: There is a difference between * and **. Docs: https://docs.angularjs.org/api/ng/provider/$sceDelegateProvider
+            'http://localhost:3000/**',
+            'https://localhost:3000/**',
+            'https://ux-components-int.chenmed.local/**',
+            'https://ux-components-qa.chenmed.local/**',
+            'https://ux-components.chenmed.com/**'
+        ]);
+	$stateProvider.state('carepro', {
+		name: "carepro",
+		url: "/carepro",
+		template:	'<carepro-component></carepro-component>'
+	}).state('depression-screening', {
+		name: "depression-screening",
+		url: "/depression-screening",
+		template:	'<depressionscreening-component></depressionscreening-component>'
+
+    	});
+    });
 })();
