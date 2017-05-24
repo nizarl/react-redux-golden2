@@ -2,12 +2,19 @@
 
 __Prerequisites:__ __*https://confluence.chenmed.com/display/MAINT/Developer+Environment+Setup+-+Frontend*__ 
 
-*(Note: If you have completed prerequisite installation and step 1 and 2 below, skip to Install Project Dependencies)*
-
 ```
 1. npm install -g gulp
 2. npm install -g local-web-server
 ```
+
+Install Ruby (latest version):  http://rubyinstaller.org/  (Make sure Ruby is in the environment path)
+
+*Once Ruby is installed open command prompt:*
+```
+1. Install Sass.  From command line: gem install sass
+2. Install Compass: From command line: gem install compass
+```
+
 __Install project dependencies:__
 ```
 npm install
