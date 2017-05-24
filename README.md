@@ -51,7 +51,7 @@ gulp build --env=justiceleague
 The environment values are sourced from: project.properties.json --> componentUrls
 
 
-__Start server and run aggregator locally:__
+__Start server and run aggregator locally:(command line - root directory)__
 ```
 1. sudo gulp
 ```
