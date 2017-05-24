@@ -2,7 +2,7 @@
 
 __Prerequisites:__ __*https://confluence.chenmed.com/display/MAINT/Developer+Environment+Setup+-+Frontend*__ 
 
-*(Note: If you have completed prerequisite installation and step 1 and 2 below, skip to Install project dependencies)*
+*(Note: If you have completed prerequisite installation and step 1 and 2 below, skip to Install Project Dependencies)*
 
 ```
 1. npm install -g gulp
