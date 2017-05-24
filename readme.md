@@ -1,18 +1,40 @@
-## Template Version: 1.0.1
+Prerequisites:
+node/npm: (from command prompt type following commands once only)
+
+Local dependencies to run web server on workstation:
+1. npm install -g gulp
+2. npm install -g local-web-server
+
+Install project dependencies(root directory)
+
+1. npm install
+
+For a new Aggregator project(first time only):
+1. Branch from develop
+2. Open project.properties.json
+    </br> a. aggregatorName : update name (single word smallcaps)
+    </br> b. aggregatorModuleName: update name (single word camelCase)
+3. Prepare source directory and files, (root directory) command: 
+</br> gulp prepare-source-files
+
+Important: The steps above need to be run only once for a new aggregator.  After that just branch and version.  Version aggregator in project.properties.json --> aggregatorVersion.
 
 
+Build Aggregator Project:
+</br> Required paramaters:
+ --env: {environment} 
+ </br> Available environments: dev(local machine), int, qa, prod, {custom environment}
 
-## Template Project
+Examples:
+</br> gulp build --env=dev
+</br> gulp build --env=int
+</br> gulp build --env=qa
+</br> gulp build --env=prod
+</br> gulp build --env=justiceleague
 
-## Indicate initial steps below
+The environment values are sourced from: project.properties.json --> componentUrls
 
- When your repo is created and you have access to it , the following steps needs to be done 
- 
- 1. There are configuration files which contain APP NAME wording (CI.properties, application.properties, sonar.properties, jboss-web.xml) . Replace then with 
- your App Name 
- 2. update the CI.properties with your or your teams email address . This is needed for your CI effort 
- 6. There are some file called "removeme" . This was created because GIT will not create a repo with empty directories . 
- As a result empty files needed to be put in them. please remove them as needed 
- 
- 
+
+To start server and run aggregator locally:
+1. sudo gulp
 

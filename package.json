@@ -1,0 +1,39 @@
+{
+  "name": "aggregator",
+  "version": "0.1.0",
+  "description": "aggregator uses ux-components from Chen CDN",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "child_process": "^1.0.2",
+    "git-rev-sync": "^1.8.0",
+    "guid": "0.0.12",
+    "gulp": "^3.9.1",
+    "gulp-angular-templatecache": "^2.0.0",
+    "gulp-autoprefixer": "^3.1.1",
+    "gulp-clean": "^0.3.2",
+    "gulp-clean-css": "^3.0.4",
+    "gulp-compass": "^2.1.0",
+    "gulp-concat": "^2.6.1",
+    "gulp-fail": "^1.0.5",
+    "gulp-html-replace": "^1.6.1",
+    "gulp-htmlmin": "^3.0.0",
+    "gulp-if-else": "^1.0.3",
+    "gulp-livereload": "^3.8.1",
+    "gulp-ng-constant-fork": "^0.4.1",
+    "gulp-plumber": "^1.1.0",
+    "gulp-rename": "^1.2.2",
+    "gulp-sourcemaps": "^2.6.0",
+    "gulp-uglify": "^2.0.0",
+    "gulp-util": "^3.0.7",
+    "opn": "^4.0.2",
+    "optimist": "^0.6.1",
+    "require-dir": "^0.3.1",
+    "run-sequence": "^1.2.2",
+    "streamqueue": "^1.1.1"
+  }
+}

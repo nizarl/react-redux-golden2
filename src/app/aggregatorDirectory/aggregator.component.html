@@ -1,0 +1,43 @@
+<div id="patientSummary" ng-if="patSumModel.primaryComponentAvailable;">
+	<div class="sidebar-wrapper background-sidebar-color">
+		<div class="">
+			<patientinfo-component title-header='PatientSummary'></patientinfo-component>
+
+		</div>
+		<sidenav-component></sidenav-component>
+	</div>
+	<div class="page-content">
+		<div class="wrap-components background-white">
+			<div class="container-fluid">
+				<section id="problemsSection">
+					<problems-component show-problems-toggle='true'></problems-component>
+				</section>
+				<section id="screeningSection">
+					<screening-component show-problems-toggle='true'></screening-component>
+				</section>
+				<section id="medsSection">
+					<meds-component show-meds-actions='false' show-meds-toggle='true'></meds-component>
+				</section>
+				<section id="vitalsSection">
+					<vitals-component show-vitals-toggle='true'></vitals-component>
+				</section>
+				<section id="labsSection">
+					<labs-component show-vitals-toggle='true'></labs-component>
+				</section>
+				<section id="ordersSection">
+					<orders-component show-orders-toggle='true'></orders-component>
+				</section>
+				<section id="phoneMessagesSection">
+					<phone-messages-component show-orders-toggle='true'></phone-messages-component>
+				</section>
+				<section id="clinicalDocumentsSection">
+					<clinical-documents-component show-orders-toggle='true'></clinical-documents-component>
+				</section>
+			</div>
+		</div>
+	</div>
+</div>
+
+<div ng-if="!patSumModel.primaryComponentAvailable;" id="errorDiv" ng-if="patSumModel.showErrorPage">
+<errorpage-component></errorpage-component>
+</div>
