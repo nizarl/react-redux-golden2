@@ -1,4 +1,4 @@
- __*Note: all commands (highlighted in code blocks below) are run from root directory of project unless specified otherwise.*__
+ __*All commands (highlighted in code blocks below) are run from root directory of project unless specified otherwise.*__
 
 __Prerequisites:__ __*https://confluence.chenmed.com/display/MAINT/Developer+Environment+Setup+-+Frontend*__ 
 
