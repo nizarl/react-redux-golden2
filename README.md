@@ -1,8 +1,9 @@
  __*Note: all commands (highlighted in code blocks below) are run from root directory of project unless specified otherwise.*__
 
-__Prerequisites:__ __*https://confluence.chenmed.com/display/MAINT/Developer+Environment+Setup+-+Frontend*__
+__Prerequisites:__ __*https://confluence.chenmed.com/display/MAINT/Developer+Environment+Setup+-+Frontend*__ 
 
-__Local dependencies to run web server on workstation:__
+(Note: If you have completed prerequisite installation skip to Install project dependencies)
+
 ```
 1. npm install -g gulp
 2. npm install -g local-web-server
@@ -11,7 +12,7 @@ __Install project dependencies:__
 ```
 npm install
 ```
-__New Aggregator project(first time only):__
+__New Aggregator project (first time only):__
 
 1. Branch from develop
 
