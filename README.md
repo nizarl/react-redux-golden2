@@ -21,7 +21,8 @@ __New Aggregator project (first time only):__
     a. aggregatorName : update name (single word smallcaps)
 
     b. aggregatorModuleName: update name (single word camelCase)
-    
+
+
 3. Prepare source directory and files:
 ```
 gulp prepare-source-files
