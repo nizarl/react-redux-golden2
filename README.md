@@ -21,7 +21,7 @@ __New Aggregator project(first time only):__
     b. aggregatorModuleName: update name (single word camelCase)
 3. Prepare source directory and files __(command line - root directory):__ 
 ```
-    gulp prepare-source-files
+gulp prepare-source-files
 ```
 
 __*Important: The steps above need to be run only once for a new aggregator.  After that just branch and version.  Version aggregator in project.properties.json --> aggregatorVersion.*__
