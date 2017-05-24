@@ -1,8 +1,6 @@
-__Prerequisites:__
+ __*Note: all commands (highlighted in code blocks below) are run from root directory of project unless specified otherwise.*__
 
- __*Note: all commands below are run from root directory of project unless specified otherwise.*__
-
-node/npm: (from command prompt type following commands once only)
+__Prerequisites:__ __*https://confluence.chenmed.com/display/MAINT/Developer+Environment+Setup+-+Frontend*__
 
 __Local dependencies to run web server on workstation:__
 ```
