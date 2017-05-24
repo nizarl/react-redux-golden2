@@ -1,12 +1,15 @@
 __Prerequisites:__
+
+ __*Note: all commands below are run from root directory of project unless specified otherwise.*__
+
 node/npm: (from command prompt type following commands once only)
 
-__Local dependencies to run web server on workstation:(command line - root directory)__
+__Local dependencies to run web server on workstation:__
 ```
 1. npm install -g gulp
 2. npm install -g local-web-server
 ```
-__Install project dependencies:(command line - root directory)__
+__Install project dependencies:__
 ```
 npm install
 ```
@@ -19,7 +22,7 @@ __New Aggregator project(first time only):__
     a. aggregatorName : update name (single word smallcaps)
 
     b. aggregatorModuleName: update name (single word camelCase)
-3. Prepare source directory and files __(command line - root directory):__ 
+3. Prepare source directory and files:
 ```
 gulp prepare-source-files
 ```
@@ -33,7 +36,7 @@ Required paramaters:  --env: {environment}
 
 Available environments: dev(local machine), int, qa, prod, {custom environment}
 
-Examples commands: __(command line - root directory)__
+Examples commands:
 
 ```
 gulp build --env=dev
@@ -51,7 +54,7 @@ gulp build --env=justiceleague
 The environment values are sourced from: project.properties.json --> componentUrls
 
 
-__Start server and run aggregator locally:(command line - root directory)__
+__Start server and run aggregator locally:__
 ```
 1. sudo gulp
 ```
