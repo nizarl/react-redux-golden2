@@ -2,12 +2,13 @@ __Prerequisites:__
 node/npm: (from command prompt type following commands once only)
 
 __Local dependencies to run web server on workstation:__
+```
 1. npm install -g gulp
 2. npm install -g local-web-server
-
+```
 __Install project dependencies(root directory)__
 ```
-1. npm install
+npm install
 ```
 __New Aggregator project(first time only):__
 
