@@ -33,7 +33,7 @@ Required paramaters:  --env: {environment}
 
 Available environments: dev(local machine), int, qa, prod, {custom environment}
 
-Examples commands: (command line - root directory)
+Examples commands: __(command line - root directory)__
 
 ```
 gulp build --env=dev
