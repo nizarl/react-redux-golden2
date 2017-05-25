@@ -64,5 +64,5 @@ The environment values are sourced from: project.properties.json --> componentUr
 
 __Start server and run aggregator locally:__
 ```
-1. sudo gulp
+1. gulp
 ```
