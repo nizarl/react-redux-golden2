@@ -49,48 +49,53 @@ module.exports = function () {
       },
       dest: '/templatescombined/'
     },
-    //aggregator
-    aggregatorJSBundle: function () {
-      return '/js/' + this.bundleJS() + '?v=' + gitHash + '-' + newGuid
-    },
-    aggregatorCSSBundle: function () {
-      return '/css/' + this.bundleCss() + '?v=' + gitHash + '-' + newGuid
-    },
-    //todo: point dev to localhost; (i.e.: gulp build)
+
+    //todo: once CDN is build by OPs point all environments to single url use min.  Local dev points to localhost:3000;
+    //point dev to localhost; (i.e.: gulp build)
     // componentUrl: function(){
     //   return componentUrls[env];
     // },
 
-    //shared internal js
+    //aggregator js
+    aggregatorJSBundle: function () {
+      return '/js/' + this.bundleJS() + '?v=' + gitHash + '-' + newGuid
+    },
+    //aggregator css
+    aggregatorCSSBundle: function () {
+      return '/css/' + this.bundleCss() + '?v=' + gitHash + '-' + newGuid
+    },
+    
+    //shared VENDOR js
+    urlsJSExternal: function () {
+      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
+      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/js/uic-thirdparty/' + thirdPartyJS.name + '.js?v=' + gitHash + '-' + newGuid
+    },
+    //shared VENDOR css
+    urlsCssExternal: function () {
+      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
+      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/css/uic-thirdparty/' + thirdPartyCss.thirdPartyCssLibName + '.css?v=' + gitHash + '-' + newGuid
+    },
+    //shared INTERNAL js
     urlsJSSharedComponentLib: function () {
       //use minified on QA and PROD
       var min = (env === 'qa' || env === 'prod') ? ".min" : '';
       var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
       return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/js/uic-core/' + sharedJS.sharedLibName + min + '.js?v=' + gitHash + '-' + newGuid
     },
-    //shared vendor js
-    urlsJSExternal: function () {
-      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
-      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/js/uic-thirdparty/' + thirdPartyJS.name + '.js?v=' + gitHash + '-' + newGuid
-    },
-    //shared internal css
+    //shared INTERNAL css
     urlsCssInternal: function () {
+      var min = (env === 'qa' || env === 'prod') ? ".min" : '';
       var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
-      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/css/uic-core/' + sharedCss.sharedLibName + '.css?v=' + gitHash + '-' + newGuid
+      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + min + '/css/uic-core/' + sharedCss.sharedLibName + '.css?v=' + gitHash + '-' + newGuid
     },
-    //shared vendor css
-    urlsCssExternal: function () {
-      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
-      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/css/uic-thirdparty/' + thirdPartyCss.thirdPartyCssLibName + '.css?v=' + gitHash + '-' + newGuid
-    },
-
-    //required components
+    //required components js
     urlsJSRequiredComponent: function (componentName, componentDirectory, componentNameAndVersion) {
       //use minified on QA and PROD
       var min = (env === 'qa' || env === 'prod') ? ".min" : '';
       var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
       return compUrl + 'components/' + componentName + '/' + componentDirectory + '/' + componentNameAndVersion + min + '.js?v=' + gitHash + '-' + newGuid
     },
+    //required components css
     urlsCssRequiredComponent: function (componentName, componentDirectory, componentNameAndVersion) {
       //use minified on QA and PROD
       var min = (env === 'qa' || env === 'prod') ? ".min" : '';
