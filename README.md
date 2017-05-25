@@ -15,10 +15,6 @@ Install Ruby (latest version):  http://rubyinstaller.org/  (Make sure Ruby is in
 2. Install Compass: From command line: gem install compass
 ```
 
-__Install project dependencies:__
-```
-npm install
-```
 __New Aggregator project (first time only):__
 
 1. Branch from develop
@@ -37,6 +33,10 @@ gulp prepare-source-files
 
 __*Important: The steps above need to be run only once for a new aggregator.  After that just branch and version.  Version aggregator in project.properties.json --> aggregatorVersion.*__
 
+__Install project dependencies:__
+```
+npm install
+```
 
 __Build Aggregator Project:__
 
