@@ -13,9 +13,13 @@ function careProCtrl($location, $cookieStore, $timeout, EventService) {
 	"use strict";
 	var paramValue = $location.search();
 	var careProModel = this;
-	careProModel.title = "Patient Layout";
 	careProModel.showAction = 0;
 	careProModel.primaryComponentAvailable = true;
+	careProModel.title = {
+		titleFull: 'Carepro',
+		firstSegment: 'Care',
+		secondSegment: 'pro'	
+	}
 
 	careProModel.$onInit = function () {
 
