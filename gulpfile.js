@@ -35,7 +35,7 @@ gulp.task('clean-build-dir', function () {
 });
 
 gulp.task('start-agg-server', function (cb) {
-  gutil.log(gutil.colors.green('patient summary web server started at http://localhost:9000'));
+  gutil.log(gutil.colors.green('aggregator web server started at http://localhost:9000'));
   exec('ws -p 9000 --compress -d ./dist --spa index.html', function (err, stdout, stderr) {
     console.log(err);
   })

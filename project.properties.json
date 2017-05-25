@@ -1,8 +1,8 @@
 {
-    "aggregatorName": "patientsummary",
-    "aggregatorModuleName": "patientSummary",
+    "aggregatorName": "carepro",
+    "aggregatorModuleName": "carePro",
     "aggregatorVersion": "0.1.1",
-    "aggregatorUrlMatchString": "patientsummary",
+    "aggregatorUrlMatchString": "carepro",
     "whiteListCORSUrls": [
         "self",
         "http://localhost:3000/**",

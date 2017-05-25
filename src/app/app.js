@@ -1,6 +1,6 @@
     // Register Angular module
-    angular.module('patientSummary')
-        .value('$routerRootComponent', 'patsumComponent')
+    angular.module('carePro')
+        .value('$routerRootComponent', 'careproComponent')
         .config(['whiteListCORSUrls', '$sceDelegateProvider', '$locationProvider', '$httpProvider',
             function (whiteListCORSUrls, $sceDelegateProvider, $locationProvider, $httpProvider) {
                 $sceDelegateProvider.resourceUrlWhitelist(whiteListCORSUrls);

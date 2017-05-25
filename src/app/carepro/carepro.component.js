@@ -1,26 +1,26 @@
-angular.module('patientSummary')
+angular.module('carePro')
 
-	.component("patsumComponent", {
+	.component("careproComponent", {
 		template: ['$templateCache', function ($templateCache) {
-			return $templateCache.get('patientsummary.component.html')
+			return $templateCache.get('carepro.component.html')
 		}],
-		controllerAs: "patSumModel",
-		controller: ['$location', '$cookieStore', '$timeout', 'EventService', patSumCtrl]
+		controllerAs: "careProModel",
+		controller: ['$location', '$cookieStore', '$timeout', 'EventService', careProCtrl]
 
 	});
 
-function patSumCtrl($location, $cookieStore, $timeout, EventService) {
+function careProCtrl($location, $cookieStore, $timeout, EventService) {
 	"use strict";
 	var paramValue = $location.search();
-	var patSumModel = this;
-	patSumModel.title = "Patient Layout";
-	patSumModel.showAction = 0;
-	patSumModel.primaryComponentAvailable = true;
+	var careProModel = this;
+	careProModel.title = "Patient Layout";
+	careProModel.showAction = 0;
+	careProModel.primaryComponentAvailable = true;
 
-	patSumModel.$onInit = function () {
+	careProModel.$onInit = function () {
 
 		var patientInfoFailedToLoad = function (e) {
-			patSumModel.primaryComponentAvailable = false;
+			careProModel.primaryComponentAvailable = false;
 			console.error(e.detail.reason);
 		}
 
