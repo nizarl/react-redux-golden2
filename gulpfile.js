@@ -21,6 +21,7 @@ var git = require('git-rev-sync');
 var requireDir = require('require-dir');
 var ngConstant = require('gulp-ng-constant-fork');
 var sourcemaps = require('gulp-sourcemaps');
+var Server = require('karma').Server;
 
 requireDir('./gulp/tasks', {
   recurse: true
@@ -69,6 +70,13 @@ gulp.task('bundle-min-js-aggregator', function () {
   return stream.done()
     .pipe(concat(config.bundleJS()))
     .pipe(gulp.dest(config.build_dir + config.jsDest))
+});
+
+gulp.task('test', function (done) {
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done).start();
 });
 
 gulp.task('build', function (callback) {

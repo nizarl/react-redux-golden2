@@ -13,6 +13,9 @@ var aggregatorModuleName = settings.aggregatorModuleName;
 var aggregatorName = settings.aggregatorName;
 var defaultEnv = "dev";
 var env = argv.env || defaultEnv;
+var defaultUseMin = "false";
+var useMin = argv.usemin || defaultUseMin;
+var min = (useMin === "true") ? ".min" : ''; //use minified files for CDN hosted
 
 module.exports = function () {
   var guid = require('guid');
@@ -36,10 +39,10 @@ module.exports = function () {
     bundleCss: function () {
       return this.aggregatorName + '.css'
     },
-    bundleCssMin: function(){
+    bundleCssMin: function () {
       return this.aggregatorName + '.min.css'
     },
-  
+
     openLocalUrl: 'http://localhost:9000/',
     templateCache: {
       fileName: 'aggregator.tpls.min.js',
@@ -50,12 +53,9 @@ module.exports = function () {
       dest: '/templatescombined/'
     },
 
-    //todo: once CDN is build by OPs point all environments to single url use min.  Local dev points to localhost:3000;
-    //point dev to localhost; (i.e.: gulp build)
-    // componentUrl: function(){
-    //   return componentUrls[env];
-    // },
-
+    getComponentUrl: function () {
+      return componentUrls[env];
+    },
     //aggregator js
     aggregatorJSBundle: function () {
       return '/js/' + this.bundleJS() + '?v=' + gitHash + '-' + newGuid
@@ -64,43 +64,29 @@ module.exports = function () {
     aggregatorCSSBundle: function () {
       return '/css/' + this.bundleCss() + '?v=' + gitHash + '-' + newGuid
     },
-    
-    //shared VENDOR js
+    //shared VENDOR JS
     urlsJSExternal: function () {
-      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
-      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/js/uic-thirdparty/' + thirdPartyJS.name + '.js?v=' + gitHash + '-' + newGuid
+      return this.getComponentUrl() + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/js/uic-thirdparty/' + thirdPartyJS.name + '.js?v=' + gitHash + '-' + newGuid
     },
-    //shared VENDOR css
+    //shared VENDOR CSS
     urlsCssExternal: function () {
-      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
-      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/css/uic-thirdparty/' + thirdPartyCss.thirdPartyCssLibName + '.css?v=' + gitHash + '-' + newGuid
+      return this.getComponentUrl() + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/css/uic-thirdparty/' + thirdPartyCss.thirdPartyCssLibName + '.css?v=' + gitHash + '-' + newGuid
     },
-    //shared INTERNAL js
+    //shared INTERNAL JS
     urlsJSSharedComponentLib: function () {
-      //use minified on QA and PROD
-      var min = (env === 'qa' || env === 'prod') ? ".min" : '';
-      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
-      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/js/uic-core/' + sharedJS.sharedLibName + min + '.js?v=' + gitHash + '-' + newGuid
+      return this.getComponentUrl() + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/js/uic-core/' + sharedJS.sharedLibName + min + '.js?v=' + gitHash + '-' + newGuid
     },
-    //shared INTERNAL css
+    //shared INTERNAL CSS
     urlsCssInternal: function () {
-      var min = (env === 'qa' || env === 'prod') ? ".min" : '';
-      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
-      return compUrl + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + min + '/css/uic-core/' + sharedCss.sharedLibName + '.css?v=' + gitHash + '-' + newGuid
+      return this.getComponentUrl() + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/css/uic-core/' + sharedCss.sharedLibName + min + '.css?v=' + gitHash + '-' + newGuid
     },
-    //required components js
+    //required components JS
     urlsJSRequiredComponent: function (componentName, componentDirectory, componentNameAndVersion) {
-      //use minified on QA and PROD
-      var min = (env === 'qa' || env === 'prod') ? ".min" : '';
-      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
-      return compUrl + 'components/' + componentName + '/' + componentDirectory + '/' + componentNameAndVersion + min + '.js?v=' + gitHash + '-' + newGuid
+      return this.getComponentUrl() + 'components/' + componentName + '/' + componentDirectory + '/' + componentNameAndVersion + min + '.js?v=' + gitHash + '-' + newGuid
     },
-    //required components css
+    //required components CSS
     urlsCssRequiredComponent: function (componentName, componentDirectory, componentNameAndVersion) {
-      //use minified on QA and PROD
-      var min = (env === 'qa' || env === 'prod') ? ".min" : '';
-      var compUrl = (env == 'dev') ? componentUrls["int"] : componentUrls[env];
-      return compUrl + 'components/' + componentName + '/' + componentDirectory + '/' + componentNameAndVersion + min + '.css?v=' + gitHash + '-' + newGuid
+      return this.getComponentUrl() + 'components/' + componentName + '/' + componentDirectory + '/' + componentNameAndVersion + min + '.css?v=' + gitHash + '-' + newGuid
     }
   }
   return config;
