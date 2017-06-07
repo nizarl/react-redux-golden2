@@ -29,9 +29,14 @@
     "requiredComponents": [{
         "componentName": "errorpage",
         "componentVersion": "0.0.1"
-    }, {
-        "componentName": "orders",
+    },
+    {
+        "componentName": "patientinfo",
         "componentVersion": "0.0.2"
+    },
+    {
+        "componentName": "vitals-add",
+        "componentVersion": "0.0.1"
     }],
     "componentUrls": {
         "dev": "http://localhost:3000/",

@@ -24,7 +24,7 @@ function careProCtrl($location, $cookieStore, $timeout, EventService) {
 	careProModel.$onInit = function () {
 
 		var patientInfoFailedToLoad = function (e) {
-			careProModel.primaryComponentAvailable = false;
+			//careProModel.primaryComponentAvailable = false;
 			console.error(e.detail.reason);
 		}
 
