@@ -22,17 +22,11 @@ var requireDir = require('require-dir');
 var ngConstant = require('gulp-ng-constant-fork');
 var sourcemaps = require('gulp-sourcemaps');
 var Server = require('karma').Server;
-var plumber = require('gulp-plumber');
 
 requireDir('./gulp/tasks', {
   recurse: true
 });
 
-function onError(err) {
-  gutil.beep();
-  console.log(err.toString())
-  this.emit('end')
-};
 
 gulp.task('clean-build-dir', function () {
   return gulp.src(config.build_dir, {
@@ -46,7 +40,7 @@ gulp.task('start-agg-server', function (cb) {
   exec('ws -p 9000 --compress -d ./dist --spa index.html', function (err, stdout, stderr) {
     console.log(err);
   })
-
+  
 });
 
 gulp.task('openbrowser', function () {
@@ -74,18 +68,15 @@ gulp.task('bundle-min-js-aggregator', function () {
     stream.queue(gulp.src(config.app + config.aggregatorName + '/' + config.aggregatorName + '.component.js')),
     stream.queue(createComponentTemplateCache(config))
   return stream.done()
-    .pipe(plumber(({
-      errorHandler: onError
-    })))
     .pipe(concat(config.bundleJS()))
     .pipe(gulp.dest(config.build_dir + config.jsDest))
 });
 
 gulp.task('test', function (done) {
-  new Server({
-    configFile: __dirname + '/karma.conf.js',
-    singleRun: true
-  }, done).start();
+    new Server({
+        configFile: __dirname + '/karma.conf.js',
+        singleRun: true
+    }, done).start();
 });
 
 gulp.task('build', function (callback) {
@@ -103,7 +94,7 @@ gulp.task('build', function (callback) {
   }
 });
 
-gulp.task('default', ['start-watchers', 'start-agg-server', 'openbrowser']);
+gulp.task('default', ['start-watchers','start-agg-server', 'openbrowser']);
 
 function switchNotSet(switchName, validOptions, validBuildCommand) {
   gutil.log(gutil.colors.red('ERROR!!!!!! gulp build error: ' + switchName + ' switch was either not supplied or not set correctly.'));
