@@ -31,17 +31,11 @@
 </head>
 
 <body>
-
 	<div ng-app="carepro">
-		<ui-view></ui-view>
-		<a ui-sref="carepro" ui-sref-active="active">carepro</a>
-		<a ui-sref="depression-screening" ui-sref-active="active">depression screening</a>
-	</div>
-	<!-- <div ng-app="carepro">
 		<div class="">
 			<carepro-component></carepro-component>
 		</div>
-	</div> -->
+	</div>
 	<!-- build:jsInternal-->
 	<!-- endbuild -->
 
