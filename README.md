@@ -1,86 +1,32 @@
- __*All commands (highlighted in code blocks below) are run from root directory of project unless specified otherwise.*__
-
-__Prerequisites:__ __*https://confluence.chenmed.com/display/MAINT/Developer+Environment+Setup+-+Frontend*__ 
-
-```
+Prerequisites:
+node/npm: (from command prompt type following commands once only)
 1. npm install -g gulp
 2. npm install -g local-web-server
-```
 
-Install Ruby (latest version):  http://rubyinstaller.org/  (Make sure Ruby is in the environment path)
+To start project: From command prompt (root directory)
+1. npm install
 
-*Once Ruby is installed open command prompt:*
-```
-1. Install Sass.  From command line: gem install sass
-2. Install Compass: From command line: gem install compass
-```
+Required paramaters:
+- --env: {environment}
 
-__New Aggregator project (first time only):__
+Optional Parameters:
+- --theme: {theme} (default is: legacy)
 
-1. Branch from develop
+environments available: [dev (local machine), int, qa, prod] 
 
-2. Open project.properties.json
-
-    a. aggregatorName : update name (single word smallcaps)
-
-    b. aggregatorModuleName: update name (single word camelCase)
+themes available:
+- legacy = myNotes
+- cure = new ctech app themes (WIP)
 
 
-3. Prepare source directory and files:
-```
-gulp prepare-source-files
-```
+To build this project:
+gulp build --env={environment} [--theme={theme}]
 
-__*Important: The steps above need to be run only once for a new aggregator.  After that just branch and version.  Version aggregator in project.properties.json --> aggregatorVersion.*__
+Example Build Commands:
+1. gulp build --env=dev 
+2. gulp build --env=int --theme=cure
+3. gulp build --env=prod --theme=legacy
 
-__Install project dependencies:__
-```
-npm install
-```
+To start server and run locally:
+1. sudo gulp
 
-__Build Aggregator Project:__
-
-Required parameters:  --env: {environment} 
-
-*Available environments: dev(local machine), cdn, {custom environment}. The environment values are sourced from: project.properties.json --> componentUrls*
-
-Optional parameter:  --usemin: true | false 
-
-*Aggregator can use minified files from CDN (you should use this switch in aggregator qa and prod environments)*
-
-Note: If you just type __gulp build__ the default environment is (dev) and usemin is false
-
-Examples commands:
-
-```
-gulp build 
-
-gulp build --env=dev
-
-gulp build --env=cdn
-
-gulp build --env=cdn --usemin=true
-
-gulp build --env=justiceleague
-```
-
-__Start server and run aggregator locally:__
-```
-gulp
-```
-
-## Unit Tests__
-
-Note: Local dev server is not used and does not need to run for Unit test. Unit test use file(s) in __/dist__ directory.
-
-1. Make sure the following two files located in /unitTests/deps are using the same version of shared library that configured in project.properties.json __sharedLibTopLevel__ properties. These shared library file are loaded on CDN. Copy locally 2 files locally.
-
-    a. uic-core.js
-
-    b. uic-thirdparty.js
-
-
-```js
-gulp build
-gulp test
-```
