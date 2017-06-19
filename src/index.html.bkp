@@ -15,7 +15,8 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 	<link rel="shortcut icon" href="/images/favicon.png" type="image/x-icon" />
 
-	<!-- build:jsThirdParty-->
+
+	<!-- build:jsExternal-->
 	<!-- endbuild -->
 
 	<!-- build:cssExternal-->
@@ -24,33 +25,22 @@
 	<!-- build:cssInternal-->
 	<!-- endbuild -->
 
+	<!-- build:cssTheme-->
+	<!-- endbuild -->
 
 </head>
 
 <body>
-	<div ng-app="carePro">
+	<div ng-app="carepro">
 		<div class="">
 			<carepro-component></carepro-component>
 		</div>
 	</div>
-
-	
-
-	<!-- build:aggregatorCSSBundle-->
+	<!-- build:jsInternal-->
 	<!-- endbuild -->
 
-	
-	<!-- build:jsSharedComponentLib-->
+	<!-- build:careProJSBundle-->
 	<!-- endbuild -->
-
-	<!-- build:jsRequiredComponents--> 
-	<!-- endbuild -->
-
-	<!-- build:cssRequiredComponents--> 
-	<!-- endbuild -->
-
-	<!-- build:aggJSBundle-->
-	<!-- endbuild -->
-
 </body>
+
 </html>
