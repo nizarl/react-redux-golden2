@@ -1,0 +1,48 @@
+{
+    "aggregatorName": "carepro",
+    "aggregatorModuleName": "carePro",
+    "aggregatorVersion": "2.0.0",
+    "aggregatorUrlMatchString": "carepro",
+    "whiteListCORSUrls": [
+        "self",
+        "http://localhost:3000/**",
+        "https://localhost:3000/**",
+        "https://ux-components-int.chenmed.local/**",
+        "https://ux-components-justiceleague.chenmed.local/**"
+    ],
+    "sharedLibTopLevel": {
+        "sharedLibName": "shared",
+        "sharedLibVersion": "0.4.0"
+    },
+    "sharedComponentJs": {
+        "sharedLibName": "uic-core"
+    },
+    "thirdPartyJS": {
+        "name": "uic-thirdparty"
+    },
+    "sharedComponentCss": {
+        "sharedLibName": "uic-core"
+    },
+    "thirdPartyCss": {
+        "thirdPartyCssLibName": "uic-thirdparty"
+    },
+    "requiredComponents": [{
+        "componentName": "errorpage",
+        "componentVersion": "0.0.1"
+    },
+    {
+        "componentName": "patientinfo",
+        "componentVersion": "0.0.2"
+    },
+    {
+        "componentName": "vitals-add",
+        "componentVersion": "0.0.1"
+    }],
+    "componentUrls": {
+        "dev": "http://localhost:3000/",
+        "cdn": "https://ux-components-int.chenmed.local/",
+        "justiceleague": "https://ux-component-justiceleague.chenmed.local/"
+    },
+    "envOptions": ["dev", "cdn", "justiceleague"],
+    "deps": ["chenExternalUIComponents", "ngComponentRouter", "ngCookies"]
+}

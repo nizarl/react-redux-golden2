@@ -1,76 +1,45 @@
-"use strict";
-angular.module('carepro')
+angular.module('carePro')
 
-.component("careproComponent", {
-	template: ['$templateCache', function ($templateCache) {
-		return $templateCache.get('carepro/carepro.component.html')
-	}],
-	controllerAs: "careProModel",
-	controller: ['$rootScope', '$location', careProCtrl]
+	.component("careproComponent", {
+		template: ['$templateCache', function ($templateCache) {
+			return $templateCache.get('carepro.component.html')
+		}],
+		controllerAs: "careProModel",
+		controller: ['$location', '$cookieStore', '$timeout', 'EventService', careProCtrl]
 
-});
+	});
 
-function careProCtrl($rootScope, $location) {
+function careProCtrl($location, $cookieStore, $timeout, EventService) {
+	"use strict";
 	var paramValue = $location.search();
 	var careProModel = this;
-
-	careProModel.title = "Patient Layout";
 	careProModel.showAction = 0;
+	careProModel.primaryComponentAvailable = true;
+	careProModel.title = {
+		titleFull: 'Carepro',
+		firstSegment: 'Care',
+		secondSegment: 'pro'	
+	}
+
 	careProModel.$onInit = function () {
+
+		var patientInfoFailedToLoad = function (e) {
+			//careProModel.primaryComponentAvailable = false;
+			console.error(e.detail.reason);
+		}
+
+		EventService.subscribe('patientinfo-failed', patientInfoFailedToLoad);
+		
+		//Example: remove listener
+		//EventService.unsubscribe('patientinfo-failed', patientInfoFailedToLoad);
+
 		//patient ID used by SF:
 		//todo: handle invalid ID or null ID to display UI error message;
+		//todo: this will use JWT in cookie in final version;
 		if (Object.keys(paramValue).length === 0) {
-			$rootScope.sfPatientId = '26669'; // alternate 812098
+			$cookieStore.put('patientId', '26669');
 		} else {
-			$rootScope.sfPatientId = paramValue.patientId;
+			$cookieStore.put('patientId', paramValue.patientId);
 		}
-	}
-
-	//////////////////////////////////////////////////////
-	// Manual Order of Panels from 0 to Size-1 for Swiper
-	// Order maters in swipe
-	/////////////////////////////////////////////////////
-	careProModel.Panels = {};
-	careProModel.Panels.Size = 5; // Number of Panels
-	careProModel.Panels.Medications = 0;
-	careProModel.Panels.Problems = 1;
-	careProModel.Panels.Vitals = 2;
-	careProModel.Panels.AdditionalNotes = 3;
-	careProModel.Panels.PhysicalExam = 4;
-
-
-
-	function ShowContent() {
-
-		careProModel.MedContent = 'display-none';
-		careProModel.VitalsContent = 'display-none';
-		careProModel.ProblemsContent = 'display-none';
-		careProModel.AdditionalNotesContent = 'display-none';
-		careProModel.PhysicalExamContent = 'display-none';
-		if (careProModel.showAction == careProModel.Panels.Medications) {
-			careProModel.MedContent = 'display-block';
-		} else if (careProModel.showAction == careProModel.Panels.Vitals) {
-			careProModel.VitalsContent = 'display-block';
-		} else if (careProModel.showAction == careProModel.Panels.AdditionalNotes) {
-			careProModel.AdditionalNotesContent = 'display-block';
-		} else if (careProModel.showAction == careProModel.Panels.PhysicalExam) {
-			careProModel.PhysicalExamContent = 'display-block';
-		} else if (careProModel.showAction == careProModel.Panels.Problems) {
-			careProModel.ProblemsContent = 'display-block';
-		}
-	}
-
-	careProModel.SwipeRight = function () {
-		if (careProModel.showAction < careProModel.Panels.Size - 1) {
-			careProModel.showAction = careProModel.showAction + 1;
-		}
-		ShowContent();
-	}
-
-	careProModel.SwipeLeft = function () {
-		if (careProModel.showAction > 0) {
-			careProModel.showAction = careProModel.showAction - 1;
-		}
-		ShowContent();
 	}
 }

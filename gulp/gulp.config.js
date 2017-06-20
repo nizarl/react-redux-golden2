@@ -1,70 +1,92 @@
+var fs = require('fs');
 var git = require('git-rev-sync');
 var argv = require('optimist').argv;
-var env = argv.env;
-var theme = argv.theme || "legacy";
-var componentVersion = argv.componentVersion;
-var environments = {
-  dev: 'http://localhost:3000/',
-  int: 'https://ux-components-int.chenmed.local/',
-  qa: 'https://ux-components-qa.chenmed.local/',
-  prod: 'https://ux-components.chenmed.local/'
-};
+var settings = JSON.parse(fs.readFileSync('./project.properties.json'));
+var componentUrls = settings.componentUrls;
+var envOptions = settings.envOptions;
+var sharedTopLevel = settings.sharedLibTopLevel;
+var sharedJS = settings.sharedComponentJs;
+var thirdPartyJS = settings.thirdPartyJS;
+var sharedCss = settings.sharedComponentCss;
+var thirdPartyCss = settings.thirdPartyCss;
+var aggregatorModuleName = settings.aggregatorModuleName;
+var aggregatorName = settings.aggregatorName;
+var defaultEnv = "cdn";
+var env = argv.env || defaultEnv;
+var defaultUseMin = "false";
+var useMin = argv.usemin || defaultUseMin;
+var min = (useMin === "true") ? ".min" : ''; //use minified files for CDN hosted
 
 module.exports = function () {
   var guid = require('guid');
   var newGuid = guid.create();
   var gitHash = git.short();
   var config = {
-    componentVersion: componentVersion,
+    envOptions: envOptions,
+    aggregatorConstants: './project.properties.json',
+    aggregatorModuleName: aggregatorModuleName,
+    aggregatorName: aggregatorName,
+    buildEnv: env,
+    src_dir: "./src/",
+    app: './src/app/',
+    appSource: 'src/app/**/*',
+    appCssSource: 'src/css/*',
+    build_dir: './dist/',
+    jsDest: 'js/',
+    bundleJS: function () {
+      return this.aggregatorName + '.bundle.js'
+    },
+    bundleCss: function () {
+      return this.aggregatorName + '.css'
+    },
+    bundleCssMin: function () {
+      return this.aggregatorName + '.min.css'
+    },
+
+    openLocalUrl: 'http://localhost:9000/',
     templateCache: {
-      fileName: 'carepro.tpls.min.js',
+      fileName: 'aggregator.tpls.min.js',
       options: {
-        module: 'carepro',
+        module: aggregatorModuleName,
         standAlone: false
       },
       dest: '/templatescombined/'
     },
-    path: {
-      src: './src/',
-      app: './src/app/',
-      appSource: 'src/app/**/*',
-      appCssSource: 'src/css/*',
-      build_dir: './build/',
-      jsDest: 'js/',
-      bundleJS: 'bundle.min.js',
-      htmlTemplatesCarePro: '/careprotemplates/',
-      openLocalUrl: 'http://localhost:9000/carepro'
+
+    getComponentUrl: function () {
+      return componentUrls[env];
     },
-    careProJSBundle: {
-      src: '/js/bundle.min.js?v=' + gitHash + '-' + newGuid
+    //aggregator js
+    aggregatorJSBundle: function () {
+      return '/js/' + this.bundleJS() + '?v=' + gitHash + '-' + newGuid
     },
-    urlsJSInternal: {
-      dev: environments[env] + 'js/ux-components-0.1.js?v=' + gitHash + '-' + newGuid,
-      int: environments[env] + 'js/ux-components-0.1.js?v=' + gitHash + '-' + newGuid,
-      qa: environments[env] + 'js/ux-components-0.1.js?v=' + gitHash + '-' + newGuid,
-      prod: environments[env] + 'js/ux-components-0.1.js?v=' + gitHash + '-' + newGuid
+    //aggregator css
+    aggregatorCSSBundle: function () {
+      return '/css/' + this.bundleCss() + '?v=' + gitHash + '-' + newGuid
     },
-    urlsJSExternal: {
-      dev: environments[env] + 'js/external-js-libraries.js?v=' + gitHash + '-' + newGuid,
-      int: environments[env] + 'js/external-js-libraries.js?v=' + gitHash + '-' + newGuid,
-      qa: environments[env] + 'js/external-js-libraries.js?v=' + gitHash + '-' + newGuid,
-      prod: environments[env] + 'js/external-js-libraries.js?v=' + gitHash + '-' + newGuid
+    //shared VENDOR JS
+    urlsJSExternal: function () {
+      return this.getComponentUrl() + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/js/uic-thirdparty/' + thirdPartyJS.name + '.js?v=' + gitHash + '-' + newGuid
     },
-    urlsCssInternal: {
-      dev: environments[env] + 'css/internal/ux-internal.css?v=' + gitHash + '-' + newGuid,
-      int: environments[env] + 'css/internal/ux-internal.css?v=' + gitHash + '-' + newGuid,
-      qa: environments[env] + 'css/internal/ux-internal.css?v=' + gitHash + '-' + newGuid,
-      prod: environments[env] + 'css/internal/ux-internal.css?v=' + gitHash + '-' + newGuid
+    //shared VENDOR CSS
+    urlsCssExternal: function () {
+      return this.getComponentUrl() + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/css/uic-thirdparty/' + thirdPartyCss.thirdPartyCssLibName + '.css?v=' + gitHash + '-' + newGuid
     },
-    urlsCssExternal: {
-      dev: environments[env] + 'css/thirdparty/ux-thirdparty.css?v=' + gitHash + '-' + newGuid,
-      int: environments[env] + 'css/thirdparty/ux-thirdparty.css?v=' + gitHash + '-' + newGuid,
-      qa: environments[env] + 'css/thirdparty/ux-thirdparty.css?v=' + gitHash + '-' + newGuid,
-      prod: environments[env] + 'css/thirdparty/ux-thirdparty.css?v=' + gitHash + '-' + newGuid
+    //shared INTERNAL JS
+    urlsJSSharedComponentLib: function () {
+      return this.getComponentUrl() + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/js/uic-core/' + sharedJS.sharedLibName + min + '.js?v=' + gitHash + '-' + newGuid
     },
-    urlsTheme: {
-      cure: environments[env] + 'css/themes/' + theme + '/' + theme + '-theme.css?v=' + gitHash + '-' + newGuid,
-      legacy: environments[env] + 'css/themes/' + theme + '/' + theme + '-theme.css?v=' + gitHash + '-' + newGuid
+    //shared INTERNAL CSS
+    urlsCssInternal: function () {
+      return this.getComponentUrl() + sharedTopLevel.sharedLibName + '/' + sharedTopLevel.sharedLibName + '-' + sharedTopLevel.sharedLibVersion + '/css/uic-core/' + sharedCss.sharedLibName + min + '.css?v=' + gitHash + '-' + newGuid
+    },
+    //required components JS
+    urlsJSRequiredComponent: function (componentName, componentDirectory, componentNameAndVersion) {
+      return this.getComponentUrl() + 'components/' + componentName + '/' + componentDirectory + '/' + componentNameAndVersion + min + '.js?v=' + gitHash + '-' + newGuid
+    },
+    //required components CSS
+    urlsCssRequiredComponent: function (componentName, componentDirectory, componentNameAndVersion) {
+      return this.getComponentUrl() + 'components/' + componentName + '/' + componentDirectory + '/' + componentNameAndVersion + min + '.css?v=' + gitHash + '-' + newGuid
     }
   }
   return config;

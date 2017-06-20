@@ -25,6 +25,7 @@ PublishProfiles/
 [Rr]elease/
 x64/
 build/
+dist/
 [Bb]in/
 [Oo]bj/
 
@@ -166,3 +167,9 @@ node_modules/
 
 #Sass
 .sass-cache/
+
+#Misc
+typings/
+typings.json
+jsconfig.json
+

@@ -1,123 +1,140 @@
 var gulp = require('gulp');
-var conf = require('../gulp.config.js')();
+var config = require('../gulp.config.js')();
+var fs = require('fs');
 var argv = require('optimist').argv;
-var env = argv.env;
-var theme = argv.theme;
+var buildEnv = config.buildEnv;
 var htmlreplace = require('gulp-html-replace');
+var settings = JSON.parse(fs.readFileSync('./project.properties.json'));
+var sharedComponentLib = settings.sharedComponentJs;
+var requiredComponents = settings.requiredComponents;
 
 gulp.task('replace-html-links', function () {
-  replaceHTMLUrls(env);
+  replaceHTMLUrls(buildEnv);
 });
 
-function getEnvUrls() {
-  var urlJSInternal = '';
-  var urlJSExternal = '';
-  var urlStyleInternal = '';
-  var urlStyleExternal = '';
-  var careProJSBundle = '';
-  var urlTheme = '';
-
-  careProJSBundle = conf.careProJSBundle.src;
-  //internal/external urls for js/css
-  switch (env) {
-
-    case 'dev':
-      urlJSInternal = conf.urlsJSInternal.dev;
-      urlJSExternal = conf.urlsJSExternal.dev;
-      urlStyleInternal = conf.urlsCssInternal.dev;
-      urlStyleExternal = conf.urlsCssExternal.dev
-      break;
-    case 'int':
-      urlJSInternal = conf.urlsJSInternal.int;
-      urlJSExternal = conf.urlsJSExternal.int;
-      urlStyleInternal = conf.urlsCssInternal.int;
-      urlStyleExternal = conf.urlsCssExternal.int
-      break;
-    case 'qa':
-      urlJSInternal = conf.urlsJSInternal.qa;
-      urlJSExternal = conf.urlsJSExternal.qa;
-      urlStyleInternal = conf.urlsCssInternal.qa;
-      urlStyleExternal = conf.urlsCssExternal.qa
-      break;
-    case 'prod':
-      urlJSInternal = conf.urlsJSInternal.prod;
-      urlJSExternal = conf.urlsJSExternal.prod;
-      urlStyleInternal = conf.urlsCssInternal.prod;
-      urlStyleExternal = conf.urlsCssExternal.prod
-      break;
-  }
-
-  //theme:
-  switch (theme) {
-    case "cure":
-      urlTheme = conf.urlsTheme.cure;
-      break;
-    case "legacy":
-      urlTheme = conf.urlsTheme.legacy;
-      break;
-    default:
-       urlTheme = conf.urlsTheme.legacy; 
-  }
+function getRequiredComponentUrls(requiredComponents) {
+  var requiredComponentsJsName = requiredComponents.map(function (item) {
+    var componentName = item.componentName;
+    var componentDirectory = item.componentName + "-" + item.componentVersion;
+    var componentNameAndVersion = item.componentName + ".component-" + item.componentVersion;
+    return config.urlsJSRequiredComponent(componentName, componentDirectory, componentNameAndVersion);
+  })
+  var requiredComponentsCSSName = requiredComponents.map(function (item) {
+    var componentName = item.componentName;
+    var componentDirectory = item.componentName + "-" + item.componentVersion;
+    var componentNameAndVersion = item.componentName + ".component-" + item.componentVersion;
+    return config.urlsCssRequiredComponent(componentName, componentDirectory, componentNameAndVersion);
+  })
 
   return {
-    careProJSBundle: careProJSBundle,
-    urlJSInternal: urlJSInternal,
-    urlJSExternal: urlJSExternal,
-    urlStyleInternal: urlStyleInternal,
-    urlStyleExternal: urlStyleExternal,
-    urlTheme: urlTheme
+    Js: requiredComponentsJsName,
+    Css: requiredComponentsCSSName
   }
 }
 
-function transformURLs(urlcareProJsBundle, urlJavascriptInternal, urlJavascriptExternal, urlStyleInternal, urlStyleExternal, urlStyleTheme, env) {
-  return gulp.src([conf.path.src + 'index.html'])
+function getSharedComponentJsUrl(jsShared) {
+  return config.urlsJSSharedComponentLib();
+}
+
+function getSharedComponentCssUrl(jsShared) {
+  return config.urlsCssSharedComponentLib();
+}
+
+function getEnvUrls() {
+  var urlJSExternal = '';
+  var urlStyleInternal = '';
+  var urlStyleExternal = '';
+
+  var aggregatorJSBundle = config.aggregatorJSBundle();
+  var aggregatorCSSBundle = config.aggregatorCSSBundle();
+  urlJSExternal = config.urlsJSExternal();
+  urlStyleInternal = config.urlsCssInternal();
+  urlStyleExternal = config.urlsCssExternal();
+
+  return {
+    aggJSBundle: aggregatorJSBundle,
+    aggregatorCSSBundle: aggregatorCSSBundle,
+    urlJSExternal: urlJSExternal,
+    urlStyleInternal: urlStyleInternal,
+    urlStyleExternal: urlStyleExternal
+  }
+}
+
+function transformURLs(inject) {
+  return gulp.src([config.src_dir + 'index.html'])
     .pipe(
       htmlreplace({
-        careProJSBundle: {
-          src: urlcareProJsBundle,
-          tpl: '<!-- Care Pro APP JS INJECTED  -->' +
+        aggJSBundle: {
+          src: inject.aggJSBundle,
+          tpl: '<!-- AGGREGATOR APP JS INJECTED -->' +
             '\n' + '\t' +
             '<script src="%s" type="text/javascript" charset="utf-8"></script>'
         },
-        jsInternal: {
-          src: urlJavascriptInternal,
-          tpl: '<!-- CHEN CDN JS Internal INJECTED environment: ' + env + ' -->' +
+        aggregatorCSSBundle: {
+          src: inject.aggregatorCSSBundle,
+          tpl: '<!-- AGGREGATOR APP CSS INJECTED -->' +
             '\n' + '\t' +
-            '<script src="%s" type="text/javascript" charset="utf-8"></script>'
+            '<link rel="stylesheet" href="%s" />'
         },
-        jsExternal: {
-          src: urlJavascriptExternal,
-          tpl: '<!-- CHEN CDN JS External INJECTED environment: ' + env + ' -->' +
+        jsThirdParty: {
+          src: inject.urlJSExternal,
+          tpl: '<!-- CHEN Hosted JS Third-Party INJECTED -->' +
             '\n' + '\t' +
             '<script src="%s" type="text/javascript" charset="utf-8"></script>'
         },
         cssInternal: {
-          src: urlStyleInternal,
-          tpl: '<!-- CHEN CDN CSS INTERNAL INJECTED environment: ' + env + ' -->' +
+          src: inject.urlStyleInternal,
+          tpl: '<!-- CHEN Hosted CSS Internal INJECTED -->' +
             '\n' + '\t' +
-
             '<link rel="stylesheet" href="%s" />'
         },
         cssExternal: {
-          src: urlStyleExternal,
-          tpl: '<!-- CHEN CDN CSS External INJECTED environment: ' + env + ' -->' +
+          src: inject.urlStyleExternal,
+          tpl: '<!-- CHEN Hosted CSS Third-Party INJECTED -->' +
             '\n' + '\t' +
 
             '<link rel="stylesheet" href="%s" />'
         },
-        cssTheme: {
-          src: urlStyleTheme,
-          tpl: '<!-- CHEN CDN Style Theme INJECTED environment: ' + env + ' -->' +
+        jsSharedComponentLib: {
+          src: inject.sharedJsUrl,
+          tpl: '<!-- CHEN Hosted JS Component\'s Shared Library INJECTED -->' +
             '\n' + '\t' +
-
+            '<script src="%s" type="text/javascript" charset="utf-8"></script>'
+        },
+        jsRequiredComponents: {
+          src: inject.requiredComponentUrls.Js,
+          tpl: '<!-- CHEN Hosted JS Required Components INJECTED -->' +
+            '\n' + '\t' +
+            '<script src="%s" type="text/javascript" charset="utf-8"></script>' +
+            '\n' + '\t'
+        },
+        cssRequiredComponents: {
+          src: inject.requiredComponentUrls.Css,
+          tpl: '<!-- CHEN Hosted Assets CSS Required Components INJECTED -->' +
+            '\n' + '\t' +
             '<link rel="stylesheet" href="%s" />'
-        }
+        },
       })
     )
-    .pipe(gulp.dest('build/'))
+    .pipe(gulp.dest(config.build_dir))
 }
 
+
 function replaceHTMLUrls(env) {
-  var getEnvURL = getEnvUrls();
-  transformURLs(getEnvURL.careProJSBundle, getEnvURL.urlJSInternal, getEnvURL.urlJSExternal, getEnvURL.urlStyleInternal, getEnvURL.urlStyleExternal, getEnvURL.urlTheme, env)
+  var envUrls = getEnvUrls();
+  var sharedComponentJsUrl = getSharedComponentJsUrl(sharedComponentLib);
+  var requiredComponentUrls = getRequiredComponentUrls(requiredComponents);
+
+
+  var transformUrls = {
+    aggJSBundle: envUrls.aggJSBundle,
+    aggregatorCSSBundle: envUrls.aggregatorCSSBundle,
+    urlJSExternal: envUrls.urlJSExternal,
+    urlStyleInternal: envUrls.urlStyleInternal,
+    urlStyleExternal: envUrls.urlStyleExternal,
+    sharedJsUrl: sharedComponentJsUrl,
+    requiredComponentUrls: requiredComponentUrls
+  }
+
+  transformURLs(transformUrls)
 }
