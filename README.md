@@ -1,32 +1,9 @@
-Prerequisites:
-node/npm: (from command prompt type following commands once only)
-1. npm install -g gulp
-2. npm install -g local-web-server
+## 1. Workstation setup: 
+* Frontend Developer Worstation Setup
 
-To start project: From command prompt (root directory)
-1. npm install
+https://confluence.chenmed.com/display/MAINT/Developer+Environment+Setup+-+Frontend
 
-Required paramaters:
-- --env: {environment}
+## 2. UI Aggregator Setup Guide:
+* UI Aggregator Setup Guide
 
-Optional Parameters:
-- --theme: {theme} (default is: legacy)
-
-environments available: [dev (local machine), int, qa, prod] 
-
-themes available:
-- legacy = myNotes
-- cure = new ctech app themes (WIP)
-
-
-To build this project:
-gulp build --env={environment} [--theme={theme}]
-
-Example Build Commands:
-1. gulp build --env=dev 
-2. gulp build --env=int --theme=cure
-3. gulp build --env=prod --theme=legacy
-
-To start server and run locally:
-1. sudo gulp
-
+https://confluence.chenmed.com/pages/viewpage.action?pageId=4393755
