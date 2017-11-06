@@ -1,0 +1,39 @@
+
+.carepro-body{
+  font-size:1em !important;
+}
+
+.patientinfo-banner{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 250px;
+  border: solid;
+  border-color: green;
+  background-color: #9db6ef;
+  font-size: 2em;
+  font-style: italic;
+  font-weight: 700;
+}
+.carepro-navbar{
+  font-size: 2em;
+  text-align: center;
+  border: solid;
+  border-color: blue;
+}
+
+.home-page-top{
+  overflow: hidden;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 3em;
+}
+
+.appContainer{
+  width:1200px;
+}
