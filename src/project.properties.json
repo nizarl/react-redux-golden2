@@ -1,82 +1,86 @@
 {
-    "appName": "carepro",
-    "appVersion": "1.0",
-    "businessServiceBaseUrls": {
-        "domains": {
-            "localhost": [
-                "localhost"
-            ],
-            "int": [
-                "carepro-int.chenmed.local"
-            ],
-            "qa": [
-                "carepro-qa.chenmed.local"
-            ],
-            "production": [
-                "carepro.chenmed.com"
-            ]
-        },
+  "appName": "carepro",
+  "appVersion": "1.0",
+  "businessServiceBaseUrls": {
+    "domains": {
+      "localhost": [
+        "localhost"
+      ],
+      "int": [
+        "carepro-int.chenmed.local"
+      ],
+      "qa": [
+        "carepro-qa.chenmed.local"
+      ],
+      "production": [
+        "carepro.chenmed.com"
+      ]
+    },
 
-        "localhost": {
-            "careProAPI": "http://localhost:4000/"
-        },
-        "int": {
-            "careProAPI": "https://carepro-int.chenmed.local/"
-        },
-        "qa": {
-            "careProAPI": "https://carepro-app-qa.chenmed.local/CareProService/carepro/"
-        },
-        "production": {
-            "careProAPI": "https://carepro.chenmed.com/CareProService/carepro/"
-        }
+    "localhost": {
+      "careProAPI": "http://localhost:4000/",
+      "patSumAPI": "https://patientsummary-app-int.chenmed.local/PatientSummaryService/patientSummary/"
     },
-    "componentInfo": {
-        "clinicaldocs": {
-            "id" : 1,
-            "name": "clinicaldocs",
-            "urlPath": "mocks/",
-            "isOpened": true,
-            "mockFile": "clinicaldocs.mock.json",
-            "clinicaldocsData": []
-        },
-        "patientinfo": {
-            "id" : 2,
-            "name": "patientinfo",
-            "urlPath": "patientInfo/"
-        },
-        "allergies": {
-            "id" : 3
-            ,
-            "name": "allergies",
-            "urlPath": "allergies/"
-        },
-        "problems": {
-            "id" : 4,
-            "name": "problems",
-            "urlPath": "problems/"
-        },
-        "medications": {
-            "id" : 5,
-            "name": "medications",
-            "urlPath": "medications/"
-        },
-        "labs": {
-            "id" : 6,
-            "name": "labs",
-            "urlPath": "diagnosticreports/"
-        },
-        "orders": {
-            "id" : 7,
-            "name": "orders",
-            "urlPath": "orderSummary/"
-        }
+    "int": {
+      "careProAPI": "https://carepro-int.chenmed.local/"
     },
-    "defaultTestPatientId": "26669",
-    "errorMessages": {
-        "noDataAvailable": {
-            "segment1": "There are no records",
-            "segment2": "found for this patient."
-        },
-        "restAPIError": "The System is experiencing difficulties loading patient's record, please try again later or contact support."
+    "qa": {
+      "careProAPI": "https://carepro-app-qa.chenmed.local/CareProService/carepro/"
+    },
+    "production": {
+      "careProAPI": "https://carepro.chenmed.com/CareProService/carepro/"
     }
+  },
+  "availableBusinessServiceKeys": {
+    "careProAPI": "careProAPI",
+    "patSumAPI": "patSumAPI"
+  },
+  "componentInfo": {
+    "clinicaldocs": {
+      "id": 1,
+      "name": "clinicaldocs",
+      "urlPath": "mocks/",
+      "isOpened": true,
+      "mockFile": "clinicaldocs.mock.json",
+      "clinicaldocsData": []
+    },
+    "patientinfo": {
+      "id": 2,
+      "name": "patientinfo",
+      "urlPath": "patientInfo/"
+    },
+    "allergies": {
+      "id": 3,
+      "name": "allergies",
+      "urlPath": "allergies/"
+    },
+    "problems": {
+      "id": 4,
+      "name": "problems",
+      "urlPath": "problems/"
+    },
+    "medications": {
+      "id": 5,
+      "name": "medications",
+      "urlPath": "medications/"
+    },
+    "labs": {
+      "id": 6,
+      "name": "labs",
+      "urlPath": "diagnosticreports/"
+    },
+    "orders": {
+      "id": 7,
+      "name": "orders",
+      "urlPath": "orderSummary/"
+    }
+  },
+  "defaultTestPatientId": "26669",
+  "errorMessages": {
+    "noDataAvailable": {
+      "segment1": "There are no records",
+      "segment2": "found for this patient."
+    },
+    "restAPIError": "The System is experiencing difficulties loading patient's record, please try again later or contact support."
+  }
 }

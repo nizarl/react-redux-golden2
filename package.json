@@ -30,7 +30,8 @@
   "license": "MIT",
   "dependencies": {
     "@ctech/clinicaldocs-component": "^2.0.0-SNAPSHOT",
-    "@ctech/shared-ui": "1.3.0-SNAPSHOT.7",
+    "@ctech/patientinfo-component": "3.0.0-SNAPSHOT.3",
+    "@ctech/shared-styles": "3.0.0-SNAPSHOT.1",
     "axios": "0.17.0",
     "fb-watchman": "2.0.0",
     "query-string": "5.0.1",

@@ -10,7 +10,6 @@ import {init} from '../utils/http.service';
  */
 
 
-
 export function loadSuccess(resp) {
   return {
     type: types.FETCH_DATA_SUCCESS,
@@ -36,14 +35,15 @@ export function toggleCollapseComponent(event, id) {
 
 // example of a redux-thunk
 export function fetchClinicalDocsData(url) {
-  return (dispatch) => {
-    const httpClient = init();
-    httpClient.get(url).then((resp) => {
-      dispatch(loadSuccess(resp.data));
-    })
-    .catch((err)=>{
+  return async (dispatch) => {
+    try {
+      const httpClient = init();
+      const response = await httpClient.get(url);
+      const data = response.data;
+      dispatch(loadSuccess(data));
+    } catch (err) {
       console.log(err); // eslint-disable-line no-console
       dispatch(loadError(err));
-    });
+    }
   };
 }

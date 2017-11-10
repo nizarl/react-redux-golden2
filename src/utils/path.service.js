@@ -1,21 +1,31 @@
 import config from '../project.properties';
 
-//The browser will always resolve window.location.hostname.  However, we supply localhost for Unit test purposes only.
-const hostname = (window && window.location && window.location.hostname) || "localhost";
+//v2
+const defaultParam = {
+  apiKey: "careProAPI",
+  apiVersion: 1 //this goes unused for now..Business service urls will be versioned by convention as some point.
+};
 
-let envKey;
-const domains = config.businessServiceBaseUrls.domains;
+export function getBaseUrl(param = defaultParam) {
+  const envKey = returnEnvKey();
 
-for (let [key, value] of Object.entries(domains)) { 
-    if(value[0]===hostname){
-        envKey = key;
-    } 
+  function returnEnvKey() {
+    //The browser will always resolve window.location.hostname.  However, we supply localhost for Unit test purposes only.
+    const hostname = (window && window.location && window.location.hostname) || "localhost";
+    const domains = config.businessServiceBaseUrls.domains;
+
+    for (let [key, value] of Object.entries(domains)) {
+      if (value[0] === hostname) {
+        return key;
+      }
+    }
+    return "";
   }
 
-if(!envKey){
-    throw new Error("Business service URL not found. Check project.properties.json file for correct config values.");
+  if (!envKey) {
+    throw new Error(`Business service URL not found. Check project.properties.json file. Make sure " ${param.apiKey} "is set correctly.`);
+  }
+
+  const baseUrl = config.businessServiceBaseUrls[envKey][param.apiKey];
+  return baseUrl;
 }
-
-const apiUrl = config.businessServiceBaseUrls[envKey].careProAPI;
-
-export const BASE_URL = apiUrl;

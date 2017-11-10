@@ -1,5 +1,5 @@
 import * as ActionTypes from '../constants/actionTypes';
-import * as ActionCreators from './clinicalDocsActions';
+import * as ActionCreators from '../actions/clinicalDocsActions';
 
 describe('Actions', () => {
 

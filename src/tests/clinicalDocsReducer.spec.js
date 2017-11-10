@@ -1,5 +1,5 @@
 import * as ActionTypes from '../constants/actionTypes';
-import reducer from './clinicalDocsReducer';
+import reducer from '../reducers/clinicalDocsReducer';
 import clinicalDocsMockData from '../mocks/clinicaldocs.mock';
 
 describe('Reducers::ClinicalDocs', () => {

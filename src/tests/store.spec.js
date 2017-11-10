@@ -1,5 +1,5 @@
 import * as ActionTypes from '../constants/actionTypes';
-import configureStore from './configureStore';
+import configureStore from '../store/configureStore';
 
 describe('Store', () => {
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import {shallow} from 'enzyme';
-import {CDContainer} from './ClinicalDocsPage';
+import {CDContainer} from '../containers/ClinicalDocsPage';
 import ClinicalDocsComponent from '@ctech/clinicaldocs-component';
 import {fetchClinicalDocsData} from '../actions/clinicalDocsActions';
 

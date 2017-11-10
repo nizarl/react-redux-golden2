@@ -12,7 +12,7 @@ import './styles/styles.scss';
 */
 require('./favicon.ico'); // Tell webpack to load favicon.ico
 import '../node_modules/@ctech/clinicaldocs-component/es/ClinicalDocs.scss';
-import sharedStylesCtech from '@ctech/shared-ui';
+import sharedStylesCtech from '@ctech/shared-styles';
 
 const store = configureStore();
 
