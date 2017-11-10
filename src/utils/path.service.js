@@ -1,6 +1,12 @@
+/* 
+ * The purpose of this module is to provide BaseUrls for varying business service endpoints
+ * We leverage key/values from project.properties.json
+ * By default getBaseUrl method provides BaseUrl for CarePro Business Service
+ * You can provide a parameter to getBaseUrl method and receive an alternate url using the configuration in project.properties.json
+ */
+
 import config from '../project.properties';
 
-//v2
 const defaultParam = {
   apiKey: "careProAPI",
   apiVersion: 1 //this goes unused for now..Business service urls will be versioned by convention as some point.

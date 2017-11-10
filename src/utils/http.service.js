@@ -2,13 +2,14 @@ import axios from 'axios';
 import 'babel-polyfill';
 
 export function init() {
-  function get (url){
-   return axios.get(url);
- }
- 
-  function post (url,postData){
+
+  function get(url) {
+    return axios.get(url);
+  }
+
+  function post(url, postData) {
     return axios.post(url, {
-      headers:{
+      headers: {
         'Content-Type': 'application/json'
       },
       postBody: postData
