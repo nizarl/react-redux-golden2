@@ -8,13 +8,7 @@ import {setAppInfo} from '../utils/appinfo.service';
 import {setPatientData} from '../utils/patient.service';
 import Loadable from 'react-loadable';
 import LoadingComponent from '../components/LoadingComponent';
-//import PatientInfo from '@ctech/patientinfo-component';
 import PatientInfoContainer from '../containers/PatientInfoContainer';
-
-
-// import config from '../project.properties';
-// import {getBaseUrl} from '../utils/path.service';
-// import {init} from '../utils/http.service';
 
 /**
  * Loadable uses react-loadable: https://github.com/thejameskyle/react-loadable
@@ -39,6 +33,7 @@ class App extends React.Component {
   componentDidMount() {
   }
 
+  //WE SHOULD APPLY AT TERNARY IN THE RETURN STATEMENT.  IF PATIENTINFO ERROR THEN SHOW <ERRORPAGE /> COMPONENT
   render() {
     const activeStyle = {color: 'red'};
     return (
