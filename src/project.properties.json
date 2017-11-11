@@ -22,13 +22,16 @@
       "patSumAPI": "https://patientsummary-app-int.chenmed.local/PatientSummaryService/patientSummary/"
     },
     "int": {
-      "careProAPI": "https://carepro-int.chenmed.local/"
+      "careProAPI": "https://carepro-int.chenmed.local/",
+      "patSumAPI": "https://patientsummary-app-int.chenmed.local/PatientSummaryService/patientSummary/"
     },
     "qa": {
-      "careProAPI": "https://carepro-app-qa.chenmed.local/CareProService/carepro/"
+      "careProAPI": "https://carepro-app-qa.chenmed.local/CareProService/carepro/",
+      "patSumAPI": "https://patientsummary-app-qa.chenmed.local/PatientSummaryService/patientSummary/"
     },
     "production": {
-      "careProAPI": "https://carepro.chenmed.com/CareProService/carepro/"
+      "careProAPI": "https://carepro.chenmed.com/CareProService/carepro/",
+      "patSumAPI": "https://patientsummary.chenmed.com/PatientSummaryService/patientSummary/"
     }
   },
   "availableBusinessServiceKeys": {
