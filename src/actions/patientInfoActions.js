@@ -26,8 +26,7 @@ export function loadError(resp) {
 // example of a redux-thunk
 export function fetchPatientInfoData(url) {
   return async(dispatch) => {
-    try {
-    
+    try { 
     const httpClient = init();
     const response = await httpClient.get(url);
     const data = response.data;
