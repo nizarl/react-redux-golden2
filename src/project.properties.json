@@ -44,15 +44,20 @@
       "mockFile": "clinicaldocs.mock.json",
       "clinicaldocsData": []
     },
-    "patientinfo": {
-      "id": 2,
-      "name": "patientinfo",
-      "urlPath": "patientInfo/"
-    },
     "allergies": {
-      "id": 3,
+      "id": 2,
       "name": "allergies",
       "urlPath": "allergies/"
+    },
+    "patientinfo": {
+      "id": 3,
+      "name": "patientinfo",
+      "urlPath": "patientInfo/",
+      "titleHeader": {
+        "titleFull": "CarePro",
+        "firstSegment": "Care",
+        "secondSegment": "Pro"
+      }
     },
     "problems": {
       "id": 4,

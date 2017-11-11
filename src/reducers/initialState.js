@@ -6,9 +6,10 @@
  * 
  */
 
- import config from '../project.properties';
- const clinicalDocsConfig = config.componentInfo.clinicaldocs;
- 
+import config from '../project.properties';
+const clinicalDocsConfig = config.componentInfo.clinicaldocs;
+const patientInfoConfig = config.componentInfo.patientinfo;
+
 export default {
   components: {
     byId: {
@@ -25,8 +26,20 @@ export default {
         urlPath: "problems/",
         isOpened: true,
         problemsData: []
-      }
+      },
+      3: {
+        patientId: '',
+        id: patientInfoConfig.id,
+        name: patientInfoConfig.name,
+        patientInfoData: {},
+        titleHeader: {
+          titleFull: patientInfoConfig.titleHeader.titleFull,
+          firstSegment: patientInfoConfig.titleHeader.firstSegment,
+          secondSegment: patientInfoConfig.titleHeader.secondSegment
+        },
+        isCollapsable: true
+      },
     },
-    allIds: [1, 2]
+    allIds: [1, 2, 3]
   }
 };

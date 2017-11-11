@@ -13,22 +13,17 @@ import initialState from './initialState';
 
 * --------------- Example ClinicalDocs Reducer: ------------
 */
-export default function clinicalDocsReducer(state = initialState.components.byId[1], action = action) {
+export default function patientInfoReducer(state = initialState.components.byId[3], action = action) {
 
   switch (action.type) {
-    case types.CLINICALDOCS_TOGGLE_FUNCTION:
+
+    case types.PATIENTINFO_FETCH_DATA_SUCCESS:
       return {
         ...state,
-        isOpened: !state.isOpened
+        patientInfoData: action.resp
       };
 
-    case types.CLINICALDOCS_FETCH_DATA_SUCCESS:
-      return {
-        ...state,
-        clinicaldocsData: action.resp
-      };
-
-    case types.CLINICALDOCS_FETCH_DATA_ERROR:
+    case types.PATIENTINFO_FETCH_DATA_ERROR:
       //You could update state here for failed fetch.  In this example just return state.
       return state;
 

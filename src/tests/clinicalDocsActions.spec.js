@@ -26,7 +26,7 @@ describe('Actions', () => {
     expect(dispatch).toBeCalledWith(expected);
   });
 
-  it('should create an action FETCH_DATA_ERROR', () => {
+  it('should create an action CLINICALDOCS_FETCH_DATA_ERROR', () => {
     //this one is not a thunk
     const resp = {
       clinicaldocsData: [],
@@ -38,13 +38,13 @@ describe('Actions', () => {
     const actual = ActionCreators.loadError(appState, resp);
     const expected = {
       resp,
-      type: ActionTypes.FETCH_DATA_ERROR,
+      type: ActionTypes.CLINICALDOCS_FETCH_DATA_ERROR,
     };
 
     expect(actual).toEqual(expected);
   });
 
-  it('should create an action FETCH_DATA_SUCCESS', () => {
+  it('should create an action CLINICALDOCS_FETCH_DATA_SUCCESS', () => {
     //this one is not a thunk
     const resp = {
       clinicaldocsData: [],
@@ -56,7 +56,7 @@ describe('Actions', () => {
     const actual = ActionCreators.loadSuccess(appState, resp);
     const expected = {
       resp,
-      type: ActionTypes.FETCH_DATA_SUCCESS,
+      type: ActionTypes.CLINICALDOCS_FETCH_DATA_SUCCESS,
     };
 
     expect(actual).toEqual(expected);

@@ -24,7 +24,6 @@ export class CDContainer extends React.Component {
     return (
       <div className="container-fluid">
       <ClinicalDocs
-        //{this.props.patientId} is available.  It is passed in to CDContainer by App.js <Route .../>
         toggleCollapseComponent={this.props.actions.toggleCollapseComponent}
         clinicaldocsProps={this.props.clinicaldocsProps}/>
     </div>

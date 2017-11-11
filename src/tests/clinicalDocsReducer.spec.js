@@ -42,7 +42,7 @@ describe('Reducers::ClinicalDocs', () => {
   });
 
   it('should handle FETCH_DATA_ERROR', () => {
-    const action = { type: ActionTypes.FETCH_DATA_ERROR};
+    const action = { type: ActionTypes.CLINICALDOCS_FETCH_DATA_ERROR};
     const expected = Object.assign(getAppState());
     expect(reducer(getAppState(), action)).not.toBe(expected);
   });
