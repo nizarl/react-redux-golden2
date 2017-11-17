@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux';
-import clinicaldocsProps from './clinicalDocsReducer';
 import patientInfoProps from './patientInfoReducer';
+import allergiesProps from './allergiesReducer';
 import { routerReducer } from 'react-router-redux';
 
 const rootReducer = combineReducers({
-  clinicaldocsProps,
   patientInfoProps,
+  allergiesProps,
   routing: routerReducer
 });
 

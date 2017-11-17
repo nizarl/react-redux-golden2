@@ -39,21 +39,8 @@
     "patSumAPI": "patSumAPI"
   },
   "componentInfo": {
-    "clinicaldocs": {
-      "id": 1,
-      "name": "clinicaldocs",
-      "urlPath": "mocks/",
-      "isOpened": true,
-      "mockFile": "clinicaldocs.mock.json",
-      "clinicaldocsData": []
-    },
-    "allergies": {
-      "id": 2,
-      "name": "allergies",
-      "urlPath": "allergies/"
-    },
     "patientinfo": {
-      "id": 3,
+      "id": 1,
       "name": "patientinfo",
       "urlPath": "patientInfo/",
       "titleHeader": {
@@ -62,25 +49,11 @@
         "secondSegment": "Pro"
       }
     },
-    "problems": {
-      "id": 4,
-      "name": "problems",
-      "urlPath": "problems/"
-    },
-    "medications": {
-      "id": 5,
-      "name": "medications",
-      "urlPath": "medications/"
-    },
-    "labs": {
-      "id": 6,
-      "name": "labs",
-      "urlPath": "diagnosticreports/"
-    },
-    "orders": {
-      "id": 7,
-      "name": "orders",
-      "urlPath": "orderSummary/"
+    "allergies": {
+      "id": 2,
+      "name": "allergies",
+      "urlPath": "allergies/",
+      "allergiesError": false
     }
   },
   "defaultTestPatientId": "26669",

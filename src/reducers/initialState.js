@@ -7,28 +7,13 @@
  */
 
 import config from '../project.properties';
-const clinicalDocsConfig = config.componentInfo.clinicaldocs;
 const patientInfoConfig = config.componentInfo.patientinfo;
+const allergiesConfig = config.componentInfo.allergies;
 
 export default {
   components: {
     byId: {
       1: {
-        id: 1,
-        name: clinicalDocsConfig.name,
-        urlPath: clinicalDocsConfig.urlPath,
-        isOpened: clinicalDocsConfig.isOpened,
-        clinicaldocsData: []
-      },
-      2: {
-        id: 2,
-        name: "problems",
-        urlPath: "problems/",
-        isOpened: true,
-        problemsData: []
-      },
-      3: {
-        patientId: '',
         id: patientInfoConfig.id,
         name: patientInfoConfig.name,
         patientInfoData: {},
@@ -39,7 +24,13 @@ export default {
         },
         isCollapsable: true
       },
+      2: {
+        id: allergiesConfig.id,
+        name: allergiesConfig.name,
+        allergiesData: {},
+        allergiesError: false
+      },
     },
-    allIds: [1, 2, 3]
+    allIds: [1, 2]
   }
 };

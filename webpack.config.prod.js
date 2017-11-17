@@ -75,9 +75,6 @@ export default {
       //THIS IS IMPORTANT: WE COPY STATIC ASSEST FROM ./src/static to ./dist on production build
       //.htaccess file is needed for apache setup
       {from: './src/static/'},
-
-      //TODO: REMOVE LINE BELOW WHEN YOU REMOVE CLINICAL DOCS 
-      //TODO: REMOVE ALL MOCK DIRECTORIES AND FILES FROM THE PROJECT
       {from: './src/mocks/', to:'./mocks'}
         ])       
   ],

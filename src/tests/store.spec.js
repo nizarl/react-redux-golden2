@@ -1,26 +1,27 @@
 import * as ActionTypes from '../constants/actionTypes';
 import configureStore from '../store/configureStore';
+import config from '../project.properties';
+const allergiesComponent = config.componentInfo.allergies;
+
 
 describe('Store', () => {
 
-  it('should change state for clinical docs toggle', () => {
+  it('should change state for Allergies Error docs toggle', () => {
     const store = configureStore();
 
     const actions = [{
-      type: ActionTypes.CLINICALDOCS_TOGGLE_FUNCTION,
-      isOpened: false
+      type: ActionTypes.ALLERGIES_FETCH_DATA_ERROR,
     }];
     actions.forEach(action => store.dispatch(action));
 
     const actual = store.getState();
     const expected = {
-      clinicaldocsData: [],
-      id: 1,
-      isOpened: false,
-      name: "clinicaldocs",
-      urlPath: "mocks/"
+      allergiesData: {},
+      id: allergiesComponent.id,
+      name: allergiesComponent.name,
+      allergiesError: true
     };
 
-    expect(actual.clinicaldocsProps).toEqual(expected);
+    expect(actual.allergiesProps).toEqual(expected);
   });
 });

@@ -4,6 +4,8 @@
  * We do not want to store state in 2 places (i.e. cookiestore and Redux state) so we use also cookiestore to AT and patientId
  */
 
+ //TODO: SPLIT USER (AT TOKEN) INTO USER SERVICE;
+ 
 import Cookies from 'universal-cookie';
 import config from '../project.properties';
 const queryString = require('query-string');

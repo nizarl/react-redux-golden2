@@ -10,13 +10,13 @@ import {init} from '../utils/http.service';
  */
 
 
-export function loadSuccess(resp) {
+export function patientInfoLoadSuccess(resp) {
   return {
     type: types.PATIENTINFO_FETCH_DATA_SUCCESS,
     resp
   };
 }
-export function loadError(resp) {
+export function patientInfoLoadError(resp) {
   return {
     type: types.PATIENTINFO_FETCH_DATA_ERROR,
     resp
@@ -30,10 +30,10 @@ export function fetchPatientInfoData(url) {
     const httpClient = init();
     const response = await httpClient.get(url);
     const data = response.data;
-    dispatch(loadSuccess(data));
+    dispatch(patientInfoLoadSuccess(data));
     } catch (err) {
       console.log(err); // eslint-disable-line no-console
-      dispatch(loadError(err));
+      dispatch(patientInfoLoadError(err));
     }
   };
 }

@@ -1,11 +1,13 @@
 import React from 'react';
 import {connect} from 'react-redux';
 import {bindActionCreators} from 'redux';
-import * as actions from '../actions/patientInfoActions';
+import * as patientInfoActions from '../actions/patientInfoActions';
+import * as allergiesActions from '../actions/allergiesActions';
 import config from '../project.properties';
 import PatientInfo from '@ctech/patientinfo-component';
 import {getBaseUrl} from '../utils/path.service';
 import {getPatientData} from '../utils/patient.service';
+const actions = {...patientInfoActions, ...allergiesActions};
 
 /**
  * This is a Container component.  
@@ -22,16 +24,17 @@ export class PatientInfoContainer extends React.Component {
     const patientId = getPatientData();
     const path = getBaseUrl(forPatSumAPI);
     const patientinfoConfig = config.componentInfo.patientinfo;
-    this.props.actions.fetchPatientInfoData(path + patientinfoConfig.urlPath + patientId); 
+    const allergiesConfig = config.componentInfo.allergies;
+    this.props.actions.fetchPatientInfoData(path + patientinfoConfig.urlPath + patientId);
+    this.props.actions.fetchAllergiesData(path + allergiesConfig.urlPath + patientId); 
   }
 
   render () {
     return (
       <div>
       <PatientInfo
-        titleHeader={this.props.titleHeader}
-        isCollapsable={this.props.isCollapsable}
-        patientInfoProps={this.props.patientInfoProps} />
+        patientInfoProps={this.props.patientInfoProps} 
+        allergiesProps={this.props.allergiesProps}/>
     </div>
     );
   }
@@ -50,14 +53,23 @@ function mapStateToProps(state) {
             id: state.patientInfoProps.id,
             name: state.patientInfoProps.name,
         },
-        patientInfoData: state.patientInfoProps.patientInfoData
+        patientInfoData: state.patientInfoProps.patientInfoData,
+        titleHeader: {
+          titleFull: state.patientInfoProps.titleHeader.titleFull,
+          firstSegment: state.patientInfoProps.titleHeader.firstSegment,
+          secondSegment: state.patientInfoProps.titleHeader.secondSegment
+        },
+        isCollapsable: true
       },
-      titleHeader: {
-        titleFull: state.patientInfoProps.titleHeader.titleFull,
-        firstSegment: state.patientInfoProps.titleHeader.firstSegment,
-        secondSegment: state.patientInfoProps.titleHeader.secondSegment
+      allergiesProps: {
+        componentInfo: {
+            id: state.allergiesProps.id,
+            name: state.allergiesProps.name,
+        },
+        allergiesData: state.allergiesProps.allergiesData,
+        allergiesError: state.allergiesProps.allergiesError
       },
-      isCollapsable: true
+      
   };
 }
 

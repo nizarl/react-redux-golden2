@@ -1,5 +1,6 @@
 import * as types from '../constants/actionTypes';
 import initialState from './initialState';
+import config from '../../src/project.properties';
 
 /*
 * Redux state should only be changed by Reducers only.
@@ -9,11 +10,13 @@ import initialState from './initialState';
 *
 *
 * To access entire state object just you could do the following.
-* export default function clinicalDocsReducer(state = initialState, action = action) {
+* export default function patientInfoReducer(state = initialState, action = action) {
 
-* --------------- Example ClinicalDocs Reducer: ------------
+* --------------- Example PatientInfo Reducer: ------------
 */
-export default function patientInfoReducer(state = initialState.components.byId[3], action = action) {
+
+const patientInfoComponentId = config.componentInfo.patientinfo.id;
+export default function patientInfoReducer(state = initialState.components.byId[patientInfoComponentId], action = action) {
 
   switch (action.type) {
 

@@ -1,0 +1,60 @@
+{
+    "totalNoOfAllergies": 4,
+    "allergiesList": [{
+        "category": "other",
+        "criticality": "CRITU",
+        "status": "unconfirmed",
+        "allergyIdentifier": "220",
+        "patientID": "17974",
+        "type": "",
+        "allergyCode": null,
+        "allergyDescription": null,
+        "reactionDescription": "Penicillins",
+        "reactionOnsetDate": null,
+        "reactionNote": null,
+        "reactionSubstance": "Penicillins",
+        "reactionSeverity": null
+    }, {
+        "category": "other",
+        "criticality": "CRITU",
+        "status": "unconfirmed",
+        "allergyIdentifier": "37194",
+        "patientID": "17974",
+        "type": "",
+        "allergyCode": null,
+        "allergyDescription": null,
+        "reactionDescription": "amox-- anaphlaxis",
+        "reactionOnsetDate": null,
+        "reactionNote": null,
+        "reactionSubstance": "amox-- anaphlaxis",
+        "reactionSeverity": null
+    }, {
+        "category": "other",
+        "criticality": "CRITU",
+        "status": "unconfirmed",
+        "allergyIdentifier": "1261",
+        "patientID": "17974",
+        "type": "",
+        "allergyCode": null,
+        "allergyDescription": null,
+        "reactionDescription": "Trimethoprim",
+        "reactionOnsetDate": null,
+        "reactionNote": null,
+        "reactionSubstance": "Trimethoprim",
+        "reactionSeverity": null
+    }, {
+        "category": "other",
+        "criticality": "CRITU",
+        "status": "unconfirmed",
+        "allergyIdentifier": "44860",
+        "patientID": "17974",
+        "type": "",
+        "allergyCode": null,
+        "allergyDescription": null,
+        "reactionDescription": "Hydrochlorothiazide",
+        "reactionOnsetDate": null,
+        "reactionNote": "hypercalcemia",
+        "reactionSubstance": "Hydrochlorothiazide",
+        "reactionSeverity": null
+    }]
+}

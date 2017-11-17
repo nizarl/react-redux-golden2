@@ -10,40 +10,30 @@ import {init} from '../utils/http.service';
  */
 
 
-export function loadSuccess(resp) {
+export function allergiesLoadSuccess(resp) {
   return {
-    type: types.CLINICALDOCS_FETCH_DATA_SUCCESS,
+    type: types.ALLERGIES_FETCH_DATA_SUCCESS,
     resp
   };
 }
-export function loadError(resp) {
+export function allergiesLoadError(resp) {
   return {
-    type: types.CLINICALDOCS_FETCH_DATA_ERROR,
+    type: types.ALLERGIES_FETCH_DATA_ERROR,
     resp
   };
 }
 
 // example of a redux-thunk
-export function toggleCollapseComponent(event, id) {
-  return function (dispatch) { 
-    return dispatch({
-      type: types.CLINICALDOCS_TOGGLE_FUNCTION,
-      id
-    });
-  };
-}
-
-// example of a redux-thunk
-export function fetchClinicalDocsData(url) {
-  return async (dispatch) => {
-    try {
-      const httpClient = init();
-      const response = await httpClient.get(url);
-      const data = response.data;
-      dispatch(loadSuccess(data));
+export function fetchAllergiesData(url) {
+  return async(dispatch) => {
+    try { 
+    const httpClient = init();
+    const response = await httpClient.get(url);
+    const data = response.data;
+    dispatch(allergiesLoadSuccess(data));
     } catch (err) {
       console.log(err); // eslint-disable-line no-console
-      dispatch(loadError(err));
+      dispatch(allergiesLoadError(err));
     }
   };
 }
